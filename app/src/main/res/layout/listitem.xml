@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="5dp">
+    <TextView
+        android:id="@+id/kode"
+        android:layout_width="70dp"
+        android:text="KODE"
+        android:layout_height="wrap_content"
+        android:gravity="center"/>
+    <TextView
+        android:id="@+id/nama"
+        android:layout_width="120dp"
+        android:text="NAMA"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        />
+    <TextView
+        android:id="@+id/tgl"
+        android:layout_width="120dp"
+        android:text="TGL LAHIR"
+        android:layout_height="wrap_content"
+        android:gravity="center" />
+    <TextView
+        android:id="@+id/jenkel"
+        android:layout_width="100dp"
+        android:text="JNS KEL"
+        android:layout_height="wrap_content"
+        android:gravity="center" />
+    <TextView
+        android:id="@+id/agama"
+        android:layout_width="100dp"
+        android:text="AGAMA"
+        android:layout_height="wrap_content"
+        android:gravity="center" />
+    <TextView
+        android:id="@+id/gol"
+        android:layout_width="70dp"
+        android:text="GOL DARAH"
+        android:layout_height="wrap_content"
+        android:gravity="center" />
+    <TextView
+        android:id="@+id/status"
+        android:layout_width="120dp"
+        android:text="STATUS"
+        android:layout_height="wrap_content"
+        android:gravity="center" />
+    <TextView
+        android:id="@+id/kota"
+        android:layout_width="120dp"
+        android:text="KOTA"
+        android:layout_height="wrap_content"
+        android:gravity="center" />
+</LinearLayout>

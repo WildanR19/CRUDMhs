@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">CRUDMhs</string>
+    <string-array name="agama">
+        <item>Islam</item>
+        <item>Kristen</item>
+        <item>Katholik</item>
+        <item>Hindu</item>
+        <item>Budha</item>
+        <item>Konghucu</item>
+    </string-array>
+</resources>
