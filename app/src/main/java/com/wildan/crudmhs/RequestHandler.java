@@ -15,8 +15,7 @@ import java.util.Map;
 import javax.net.ssl.HttpsURLConnection;
 
 public class RequestHandler {
-    public String sendPostRequest(String requestURL, HashMap<String, String>
-            postDataParams) {
+    public String sendPostRequest(String requestURL, HashMap<String, String> postDataParams) {
         URL url;
         StringBuilder sb = new StringBuilder();
         try {
@@ -41,8 +40,7 @@ public class RequestHandler {
 
             int responseCode = conn.getResponseCode();
             if (responseCode == HttpsURLConnection.HTTP_OK) {
-                BufferedReader br = new BufferedReader(new
-                        InputStreamReader(conn.getInputStream()));
+                BufferedReader br = new BufferedReader(new InputStreamReader(conn.getInputStream()));
                 sb = new StringBuilder();
                 String response;
                 //Reading server response
@@ -60,8 +58,7 @@ public class RequestHandler {
         try {
             URL url = new URL(requestURL);
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
-            BufferedReader bufferedReader = new BufferedReader(new
-                    InputStreamReader(con.getInputStream()));
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(con.getInputStream()));
             String s;
             while ((s = bufferedReader.readLine()) != null) {
                 sb.append(s + "\n");
@@ -71,14 +68,12 @@ public class RequestHandler {
         return sb.toString();
     }
 
-    public String sendGetRequestParam(String requestURL, String id) {
+    public String sendGetRequestParam(String requestURL, String kode) {
         StringBuilder sb = new StringBuilder();
-        //tampilBarang.textView.setText(id.toString());
         try {
-            URL url = new URL(requestURL + id);
+            URL url = new URL(requestURL + kode);
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
-            BufferedReader bufferedReader = new BufferedReader(new
-                    InputStreamReader(con.getInputStream()));
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(con.getInputStream()));
             String s;
             while ((s = bufferedReader.readLine()) != null) {
                 sb.append(s + "\n");
@@ -88,8 +83,7 @@ public class RequestHandler {
         return sb.toString();
     }
 
-    private String getPostDataString(HashMap<String, String> params) throws
-            UnsupportedEncodingException {
+    private String getPostDataString(HashMap<String, String> params) throws UnsupportedEncodingException {
         StringBuilder result = new StringBuilder();
         boolean first = true;
         for (Map.Entry<String, String> entry : params.entrySet()) {
@@ -105,3 +99,8 @@ public class RequestHandler {
     }
 
 }
+
+/**
+ * Created by Wildan Rozaqi
+ * A22.2018.02690
+ */

@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
             }
         });
     }
-    private void showEmployee(){
+    private void showMhs(){
         JSONObject jsonObject = null;
         ArrayList<HashMap<String,String>> list = new ArrayList<HashMap<String,String>>();
         try {
@@ -145,7 +145,7 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
                 super.onPostExecute(s);
                 loading.dismiss();
                 JSON_STRING = s;
-                showEmployee();
+                showMhs();
             }
         }
         GetJSON gj = new GetJSON();
@@ -157,7 +157,19 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
         Intent intent = new Intent(this, updateMhs.class);
         HashMap<String,String> map =(HashMap)parent.getItemAtPosition(position);
         String kode = map.get(TAG_KODE).toString();
+        String nama = map.get(TAG_NAMA).toString();
+        String tanggal = map.get(TAG_TGL).toString();
+        String kota = map.get(TAG_KOTA).toString();
+
         intent.putExtra(TAG_KODE,kode);
+        intent.putExtra(TAG_NAMA,nama);
+        intent.putExtra(TAG_TGL, tanggal);
+        intent.putExtra(TAG_KOTA, kota);
         startActivity(intent);
     }
 }
+
+/**
+ * Created by Wildan Rozaqi
+ * A22.2018.02690
+ */
