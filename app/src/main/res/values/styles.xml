@@ -8,18 +8,12 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
-    <style name="NoBar" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/birumuda</item>
-        <item name="colorPrimaryDark">@color/biru</item>
-        <item name="colorAccent">@color/colorAccent</item>
-    </style>
-
     <style name="BlueTheme" parent="Theme.AppCompat.Light.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/biru</item>
         <item name="colorPrimaryDark">@color/biru</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="fontFamily">@font/amaranth</item>
     </style>
 
 </resources>

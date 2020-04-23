@@ -151,7 +151,7 @@ public class addMhs extends AppCompatActivity {
     }
 
     private void validasi(){
-        String form_kode, form_nama, form_tgl, form_kota;
+        String form_kode, form_nama, form_tgl, form_kota, form_jenkel;
         form_kode = teksKode.getText().toString();
         form_nama = teksNama.getText().toString();
         form_tgl = tanggal.getText().toString();
@@ -169,9 +169,15 @@ public class addMhs extends AppCompatActivity {
         }else if (form_kota.isEmpty()){
             kota.setError("Kota Belum Diisi");
             kota.requestFocus();
+        }else if (rgJenkel.getCheckedRadioButtonId() == -1){
+            Toast.makeText(addMhs.this, "Pilih Jenis Kelamin !", Toast.LENGTH_SHORT).show();
+        }else if (rgGol.getCheckedRadioButtonId() == -1){
+            Toast.makeText(addMhs.this, "Pilih Golongan Darah !", Toast.LENGTH_SHORT).show();
+        }else if (rgStatus.getCheckedRadioButtonId() == -1){
+            Toast.makeText(addMhs.this, "Pilih Status Mahasiswa !", Toast.LENGTH_SHORT).show();
         }else {
             simpanData();
-            Toast.makeText(addMhs.this, "Sukses Sitambhkan !", Toast.LENGTH_SHORT).show();
+            Toast.makeText(addMhs.this, "Berhasil Ditambahkan !", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(addMhs.this, MainActivity.class);
             startActivity(intent);
             finish();

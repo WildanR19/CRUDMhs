@@ -12,7 +12,6 @@
         android:layout_height="match_parent"
         android:layout_margin="20dp">
         <RelativeLayout
-            android:id="@+id/rlayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -93,13 +92,10 @@
                         android:orientation="horizontal">
 
                         <RadioButton
-                            android:id="@+id/jenkelP"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Perempuan"
-                            android:checked="true" />
+                            android:text="Perempuan" />
                         <RadioButton
-                            android:id="@+id/jenkelL"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="30dp"
@@ -139,28 +135,23 @@
                         android:orientation="horizontal">
 
                         <RadioButton
-                            android:id="@+id/golA"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:checked="true"
                             android:text="A" />
 
                         <RadioButton
-                            android:id="@+id/golB"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="30dp"
                             android:text="B" />
 
                         <RadioButton
-                            android:id="@+id/golAB"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="30dp"
                             android:text="AB" />
 
                         <RadioButton
-                            android:id="@+id/golO"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="30dp"
@@ -183,13 +174,10 @@
                         android:orientation="horizontal">
 
                         <RadioButton
-                            android:id="@+id/statusTA"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Tidak Aktif"
-                            android:checked="true" />
+                            android:text="Tidak Aktif" />
                         <RadioButton
-                            android:id="@+id/statusA"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="30dp"

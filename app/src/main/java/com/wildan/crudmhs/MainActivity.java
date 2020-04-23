@@ -160,11 +160,19 @@ public class MainActivity extends AppCompatActivity implements ListView.OnItemCl
         String nama = map.get(TAG_NAMA).toString();
         String tanggal = map.get(TAG_TGL).toString();
         String kota = map.get(TAG_KOTA).toString();
+        String gol = map.get(TAG_GOLDARAH).toString();
+        String jenkel = map.get(TAG_JENKEL).toString();
+        String status = map.get(TAG_STATUS).toString();
+        String agama = map.get(TAG_AGAMA).toString();
 
         intent.putExtra(TAG_KODE,kode);
         intent.putExtra(TAG_NAMA,nama);
         intent.putExtra(TAG_TGL, tanggal);
         intent.putExtra(TAG_KOTA, kota);
+        intent.putExtra(TAG_GOLDARAH, gol);
+        intent.putExtra(TAG_JENKEL,jenkel);
+        intent.putExtra(TAG_STATUS, status);
+        intent.putExtra(TAG_AGAMA, agama);
         startActivity(intent);
     }
 }

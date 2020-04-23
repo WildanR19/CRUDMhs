@@ -15,6 +15,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -27,8 +28,8 @@ public class updateMhs extends AppCompatActivity {
     private EditText kdEdit,nmEdit,tglEdit,ktEdit;
     private Button tblEdit,tblDelete;
     private RadioGroup rgJenkel, rgGol, rgStatus;
-    private RadioButton rbJenkel, rbGol, rbStatus;
-    private String kode,nama,tanggal, kota;
+    private RadioButton rbJenkel, rbGol, rbStatus, rbJenkelL, rbJenkelP, rbGolA, rbGolB, rbGolAB, rbGolO, rbStatusA, rbStatusTA;
+    private String kode,nama,tanggal, kota, gol, jenkel, status, agm;
     private Spinner agama;
     private String URL_UPDATE = "http://192.168.43.68:8080/utsmobile2/updateMhs.php";
     private String URL_DELETE = "http://192.168.43.68:8080/utsmobile2/hapusMhs.php?kode=";
@@ -40,6 +41,7 @@ public class updateMhs extends AppCompatActivity {
     private String TAG_GOLDARAH = "goldarah";
     private String TAG_STATUS = "status";
     private String TAG_KOTA = "kota";
+    //private String[] listAgama = new String[].getString(R.array.agama);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,6 +55,10 @@ public class updateMhs extends AppCompatActivity {
         nama = intent.getStringExtra(TAG_NAMA);
         tanggal = intent.getStringExtra(TAG_TGL);
         kota = intent.getStringExtra(TAG_KOTA);
+        gol = intent.getStringExtra(TAG_GOLDARAH);
+        jenkel = intent.getStringExtra(TAG_JENKEL);
+        status = intent.getStringExtra(TAG_STATUS);
+        agm = intent.getStringExtra(TAG_AGAMA);
 
         kdEdit = (EditText)findViewById(R.id.input_kode);
         nmEdit = (EditText)findViewById(R.id.input_nama);
@@ -61,7 +67,6 @@ public class updateMhs extends AppCompatActivity {
         rgJenkel = (RadioGroup)findViewById(R.id.rgJenkel);
         rgGol = (RadioGroup)findViewById(R.id.rgGol);
         rgStatus = (RadioGroup)findViewById(R.id.rgStatus);
-        agama = (Spinner)findViewById(R.id.spinAgama);
         tblEdit=(Button)findViewById(R.id.btn_update);
         tblDelete=(Button)findViewById(R.id.btn_delete);
 
@@ -70,6 +75,40 @@ public class updateMhs extends AppCompatActivity {
         tglEdit.setText(tanggal);
         ktEdit.setText(kota);
 
+        rbGolA = (RadioButton)findViewById(R.id.golA);
+        rbGolB = (RadioButton)findViewById(R.id.golB);
+        rbGolAB = (RadioButton)findViewById(R.id.golAB);
+        rbGolO = (RadioButton)findViewById(R.id.golO);
+
+        rbJenkelL = (RadioButton)findViewById(R.id.jenkelL);
+        rbJenkelP = (RadioButton)findViewById(R.id.jenkelP);
+
+        rbStatusA = (RadioButton)findViewById(R.id.statusA);
+        rbStatusTA = (RadioButton)findViewById(R.id.statusTA);
+
+        if (gol.equals("A")){
+            rbGolA.setChecked(true);
+        }else if (gol.equals("B")){
+            rbGolB.setChecked(true);
+        }else if (gol.equals("AB")){
+            rbGolAB.setChecked(true);
+        }else{
+            rbGolO.setChecked(true);
+        }
+
+        if (jenkel.equals("Perempuan")){
+            rbJenkelP.setChecked(true);
+        }else {
+            rbJenkelL.setChecked(true);
+        }
+
+        if (status.equals("Aktif")){
+            rbStatusA.setChecked(true);
+        }else {
+            rbStatusTA.setChecked(true);
+        }
+
+        agama = (Spinner)findViewById(R.id.spinAgama);
         tblDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -79,10 +118,7 @@ public class updateMhs extends AppCompatActivity {
         tblEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                update_mhs();
-                Intent intent1=new Intent(updateMhs.this,MainActivity.class);
-                startActivity(intent1);
-                finish();
+                validasi();
             }
         });
     }
@@ -201,12 +237,13 @@ public class updateMhs extends AppCompatActivity {
 
     private void confirmDelete(){
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-        alertDialogBuilder.setMessage("Yakin Ingin Menghapus Barang ini ?");
+        alertDialogBuilder.setMessage("Yakin Ingin Menghapus Data ini ?");
         alertDialogBuilder.setPositiveButton("Ya",
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface arg0, int arg1) {
                         deleteMhs();
+                        Toast.makeText(updateMhs.this, "Berhasil Dihapus !", Toast.LENGTH_SHORT).show();
                         startActivity(new Intent(updateMhs.this,MainActivity.class));
                         finish();
                     }
@@ -219,6 +256,40 @@ public class updateMhs extends AppCompatActivity {
                 });
         AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.show();
+    }
+
+    private void validasi(){
+        String form_kode, form_nama, form_tgl, form_kota;
+        form_kode = kdEdit.getText().toString();
+        form_nama = nmEdit.getText().toString();
+        form_tgl = tglEdit.getText().toString();
+        form_kota = ktEdit.getText().toString();
+
+        if (form_kode.isEmpty()){
+            kdEdit.setError("Kode Belum Diisi");
+            kdEdit.requestFocus();
+        }else if (form_nama.isEmpty()){
+            nmEdit.setError("Nama Belum Diisi");
+            nmEdit.requestFocus();
+        }else if (form_tgl.isEmpty()){
+            tglEdit.setError("Tanggal Lahir Belum Diisi");
+            tglEdit.requestFocus();
+        }else if (form_kota.isEmpty()){
+            ktEdit.setError("Kota Belum Diisi");
+            ktEdit.requestFocus();
+        }else if (rgJenkel.getCheckedRadioButtonId() == -1){
+            Toast.makeText(updateMhs.this, "Pilih Jenis Kelamin !", Toast.LENGTH_SHORT).show();
+        }else if (rgGol.getCheckedRadioButtonId() == -1){
+            Toast.makeText(updateMhs.this, "Pilih Golongan Darah !", Toast.LENGTH_SHORT).show();
+        }else if (rgStatus.getCheckedRadioButtonId() == -1){
+            Toast.makeText(updateMhs.this, "Pilih Status Mahasiswa !", Toast.LENGTH_SHORT).show();
+        }else {
+            update_mhs();
+            Toast.makeText(updateMhs.this, "Berhasil Ditambahkan !", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(updateMhs.this, MainActivity.class);
+            startActivity(intent);
+            finish();
+        }
     }
 }
 
