@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -30,7 +31,7 @@ public class updateMhs extends AppCompatActivity {
     private RadioGroup rgJenkel, rgGol, rgStatus;
     private RadioButton rbJenkel, rbGol, rbStatus, rbJenkelL, rbJenkelP, rbGolA, rbGolB, rbGolAB, rbGolO, rbStatusA, rbStatusTA;
     private String kode,nama,tanggal, kota, gol, jenkel, status, agm;
-    private Spinner agama;
+    private Spinner spinAgama;
     private String URL_UPDATE = "http://192.168.43.68:8080/utsmobile2/updateMhs.php";
     private String URL_DELETE = "http://192.168.43.68:8080/utsmobile2/hapusMhs.php?kode=";
     private String TAG_KODE = "kode";
@@ -108,7 +109,15 @@ public class updateMhs extends AppCompatActivity {
             rbStatusTA.setChecked(true);
         }
 
-        agama = (Spinner)findViewById(R.id.spinAgama);
+        spinAgama = (Spinner)findViewById(R.id.spinAgama);
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.agama, android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinAgama.setAdapter(adapter);
+        if (agm != null){
+            int spinnerPosition = adapter.getPosition(agm);
+            spinAgama.setSelection(spinnerPosition);
+        }
+
         tblDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -162,15 +171,15 @@ public class updateMhs extends AppCompatActivity {
             bstatus = "1";
         }
 
-        if (agama.getSelectedItem().equals("Islam")){
+        if (spinAgama.getSelectedItem().equals("Islam")){
             agm = "1";
-        }else if (agama.getSelectedItem().equals("Kristen")){
+        }else if (spinAgama.getSelectedItem().equals("Kristen")){
             agm = "2";
-        }else if (agama.getSelectedItem().equals("Katholik")){
+        }else if (spinAgama.getSelectedItem().equals("Katholik")){
             agm = "3";
-        }else if (agama.getSelectedItem().equals("Hindu")){
+        }else if (spinAgama.getSelectedItem().equals("Hindu")){
             agm = "4";
-        }else if (agama.getSelectedItem().equals("Budha")){
+        }else if (spinAgama.getSelectedItem().equals("Budha")){
             agm = "5";
         }else {
             agm = "6";
